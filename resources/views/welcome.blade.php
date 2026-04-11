@@ -19,7 +19,12 @@
         <input type="text" id="buscador" class="form-control w-25" placeholder="Buscar...">
 
         <div>
-            <a href="/contacto" class="btn btn-outline-light me-2">Contacto</a>
+            @if(session('logueado'))
+                    <a href="/logout" class="btn btn-danger">Cerrar sesión</a>
+                @else
+                    <a href="/contacto" class="btn btn-outline-light">Contacto</a>
+            @endif
+
             <a href="/equipo" class="btn btn-outline-light me-2">Equipo</a>
 
             <a href="/carrito" class="btn btn-warning">
@@ -29,6 +34,12 @@
 
     </div>
 </nav>
+
+@if(session('success'))
+    <div class="alert alert-success m-3">
+        {{ session('success') }}
+    </div>
+@endif
 
 <!-- CARRUSEL -->
 <div class="container mt-4">
@@ -119,7 +130,7 @@ function mostrarProductos(lista){
         `;
     });
 
-    actualizarBotones();
+    //actualizarBotones();
 }
 
 mostrarProductos(productos);

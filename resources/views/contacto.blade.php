@@ -87,7 +87,7 @@
             </div>
 
             <div class="card-footer text-center">
-                <small>¿Ya tenés cuenta? <a href="#">Iniciar sesión</a></small>
+                <small>¿Ya tenés cuenta? <a href="/login">Iniciar sesión</a></small>
             </div>
 
         </div>
