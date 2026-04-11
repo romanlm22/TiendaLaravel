@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
+
+Route::post('/registro', [UsuarioController::class, 'store']);
 
 Route::get('/', function () {
     return view('welcome');

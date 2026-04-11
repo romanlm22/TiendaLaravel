@@ -7,85 +7,97 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light" class="d-flex flex-column min-vh-100">
+
+<body class="bg-light d-flex flex-column min-vh-100">
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="/">Mi Sitio</a>
         <div>
-            <a href="/contacto" class="btn btn-outline-light">contacto</a>
+            <a href="/contacto" class="btn btn-outline-light me-2">Contacto</a>
             <a href="/equipo" class="btn btn-outline-light">Equipo</a>
         </div>
     </div>
 </nav>
 
-<!-- FORMULARIO -->
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+<!-- CONTENIDO -->
+<div class="container flex-grow-1 d-flex justify-content-center align-items-center">
 
-            <div class="card shadow">
-                <div class="card-header text-center bg-primary text-white">
-                    <h4>Crear cuenta</h4>
-                </div>
+    <div class="col-md-6 col-lg-5">
 
-                <div class="card-body">
+        <div class="card shadow">
 
-                    <form>
+            <div class="card-header bg-primary text-white text-center">
+                <h4>Crear cuenta</h4>
+            </div>
 
-                        <!-- Nombre -->
-                        <div class="mb-3">
-                            <label class="form-label">Nombre completo</label>
-                            <input type="text" class="form-control" placeholder="Tu nombre">
-                        </div>
+            <div class="card-body">
 
-                        <!-- Email -->
-                        <div class="mb-3">
-                            <label class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" placeholder="ejemplo@email.com">
-                        </div>
+                <!-- MENSAJE -->
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-                        <!-- Password -->
-                        <div class="mb-3">
-                            <label class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" placeholder="********">
-                        </div>
+                <!-- FORMULARIO -->
+                <form method="POST" action="/registro">
+                    @csrf
 
-                        <!-- Confirmar -->
-                        <div class="mb-3">
-                            <label class="form-label">Confirmar contraseña</label>
-                            <input type="password" class="form-control" placeholder="********">
-                        </div>
+                    <!-- Nombre -->
+                    <div class="mb-3">
+                        <label class="form-label">Nombre completo</label>
+                        <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
+                    </div>
 
-                        <!-- Checkbox -->
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input">
-                            <label class="form-check-label">Acepto los términos</label>
-                        </div>
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label class="form-label">Correo electrónico</label>
+                        <input type="email" name="email" class="form-control" placeholder="ejemplo@email.com" required>
+                    </div>
 
-                        <!-- Botón -->
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success">
-                                Registrarse
-                            </button>
-                        </div>
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" name="password" class="form-control" placeholder="********" required>
+                    </div>
 
-                    </form>
+                    <!-- Confirmar -->
+                    <div class="mb-3">
+                        <label class="form-label">Confirmar contraseña</label>
+                        <input type="password" name="password_confirmation" class="form-control" placeholder="********" required>
+                    </div>
 
-                </div>
+                    <!-- Checkbox -->
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" required>
+                        <label class="form-check-label">Acepto los términos</label>
+                    </div>
 
-                <div class="card-footer text-center">
-                    <small>¿Ya tienes cuenta? <a href="#">Iniciar sesión</a></small>
-                </div>
+                    <!-- Botón -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">
+                            Registrarse
+                        </button>
+                    </div>
+
+                </form>
 
             </div>
 
+            <div class="card-footer text-center">
+                <small>¿Ya tenés cuenta? <a href="#">Iniciar sesión</a></small>
+            </div>
+
         </div>
+
     </div>
+
 </div>
 
-<footer class="bg-dark text-white text-center mt auto p-4">
+<!-- FOOTER -->
+<footer class="bg-dark text-white text-center mt-auto p-4">
     <p>Síguenos en redes</p>
 </footer>
 
