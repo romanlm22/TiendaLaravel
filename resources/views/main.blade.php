@@ -7,8 +7,7 @@
 <div class="container mt-4">
 
     <div class="row">
-
-        <!-- IZQ -->
+        
         <div class="col-md-6">
             <div id="carouselIzq" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
 
@@ -219,7 +218,6 @@ function scrollOfertas(dir){
     .scrollBy({left:dir*300,behavior:'smooth'});
 }
 
-// INIT
 actualizarContador();
 
 </script>
