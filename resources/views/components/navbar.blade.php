@@ -2,14 +2,12 @@
     
     <a class="navbar-brand" href="/">MiTienda</a>
 
-    <!-- BOTÓN TOGGLE MOBILE -->
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="menu">
 
-        <!-- 🔽 CATEGORÍAS -->
         <ul class="navbar-nav me-3">
 
             <li class="nav-item dropdown">
@@ -30,12 +28,10 @@
 
         </ul>
 
-        <!-- BUSCADOR -->
         <form class="d-flex mx-auto w-50">
             <input id="buscador" class="form-control" type="search" placeholder="Buscar productos...">
         </form>
 
-        <!-- DERECHA -->
         <div class="d-flex gap-3 align-items-center">
 
             @if(!session('logueado'))
