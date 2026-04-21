@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+@extends('layouts.app')
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@section('title', 'Login')
 
-<body class="bg-light d-flex flex-column min-vh-100">
+@section('content')
 
 <div class="container d-flex justify-content-center align-items-center flex-grow-1">
 
@@ -29,19 +24,16 @@
                 <form method="POST" action="/login">
                     @csrf
 
-                    <div class="mb-3">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Contraseña</label>
-                        <input type="password" name="password" class="form-control" required>
-                    </div>
+                    <input type="email" name="email" class="form-control mb-3" placeholder="Email" required>
+                    <input type="password" name="password" class="form-control mb-3" placeholder="Contraseña" required>
 
                     <button class="btn btn-success w-100">Ingresar</button>
                 </form>
 
+            </div>
+
+            <div class="card-footer text-center">
+                <small>¿No tenés cuenta? <a href="/registros">Registrarme</a></small>
             </div>
 
         </div>
@@ -49,5 +41,4 @@
 
 </div>
 
-</body>
-</html>
+@endsection

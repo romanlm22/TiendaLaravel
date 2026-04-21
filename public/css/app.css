@@ -1,0 +1,117 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar-custom {
+    background-color: #28a745;
+}
+
+/* Cards */
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card {
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Botón agregado */
+.agregado {
+    background-color: gray !important;
+}
+
+/* Animación carrito */
+.scale {
+    transform: scale(1.3);
+    transition: 0.2s;
+}
+
+/* CATEGORIAS */
+.categoria-circle {
+    width: 150px;
+    height: 150px;
+    background: #a5d8ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    transition: 0.3s;
+}
+
+.categoria-circle img {
+    width: 80px;
+}
+
+.categoria-circle:hover {
+    transform: scale(1.1);
+}
+
+/* OFERTAS */
+.ofertas-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+
+.oferta-card {
+    min-width: 220px;
+}
+
+/* IMAGENES OFERTAS */
+.oferta-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Flechas */
+.flecha {
+    cursor: pointer;
+    font-size: 28px;
+    background: white;
+    border-radius: 50%;
+    padding: 5px 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* MARCAS */
+.marcas {
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.marcas-track {
+    display: flex;
+    gap: 40px;
+    animation: scroll 15s linear infinite;
+}
+
+.dropdown-menu {
+    border-radius: 10px;
+}
+
+.dropdown-item:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}

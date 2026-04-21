@@ -8,26 +8,32 @@ use App\Mail\RegistroUsuario;
 
 class UsuarioController extends Controller
 {
-    public function store(Request $request)
+    
+        public function store(Request $request)
     {
-    // guardar usuario en sesión
-    session([
-        'usuario' => [
-            'email' => $request->email,
-            'password' => $request->password
-        ]
-    ]);
+    
+        $usuario = [
+        'email'    => $request->email,
+        'password' => $request->password,
+        ];
+
+    
+        session(['usuario' => $usuario]);
+
+
+        Mail::to($usuario['email'])->send(new RegistroUsuario());
+
     return back()->with('success', 'Usuario registrado correctamente');
     }
+
 
     public function login(Request $request)
     {
     $usuario = session('usuario');
-    // si no hay usuario registrado
+   
     if(!$usuario){
         return back()->with('error', 'Primero debes registrarte');
     }
-    // validar datos
     if(
         $request->email == $usuario['email'] &&
         $request->password == $usuario['password']

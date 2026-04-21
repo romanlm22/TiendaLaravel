@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Carrito</title>
+@extends('layouts.app')
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@section('title', 'Carrito')
 
-<body class="d-flex flex-column min-vh-100">
+@section('content')
 
 <div class="container mt-5">
 
@@ -18,13 +12,11 @@
 
     <h4 class="mt-3">Total: $<span id="total">0</span></h4>
 
-    <!-- BOTONES -->
-    <button class="btn btn-danger mt-3" onclick="vaciar()">
-        Vaciar carrito
-    </button>
+    <button class="btn btn-danger mt-3" onclick="vaciar()">Vaciar carrito</button>
 
+    <!-- BOTÓN COMPRA -->
     <button class="btn btn-success mt-3 ms-2" data-bs-toggle="modal" data-bs-target="#modalCompra">
-        Comprar
+        <i class="bi bi-whatsapp"></i> Comprar
     </button>
 
 </div>
@@ -35,7 +27,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Finalizar compra</h5>
+                <h5 class="modal-title">Confirmar compra</h5>
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -70,29 +62,29 @@
     </div>
 </div>
 
-<!-- FOOTER -->
-<footer class="bg-dark text-white text-center mt-auto p-4">
-    Footer
-</footer>
+@endsection
 
-<!-- Bootstrap JS (IMPORTANTE para modal) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+@section('scripts')
 <script>
 
-// PRODUCTOS
+// PRODUCTOS (simulación)
 let productos = {
-    1:{nombre:"Producto 1",precio:100},
-    2:{nombre:"Producto 2",precio:150},
-    3:{nombre:"Producto 3",precio:200},
-    4:{nombre:"Producto 4",precio:250},
-    5:{nombre:"Producto 5",precio:300},
-    6:{nombre:"Producto 6",precio:350}
+    1:{nombre:"Zapatillas Nike",precio:25000},
+    2:{nombre:"Remera Adidas",precio:12000}
 };
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let lista = document.getElementById("listaCarrito");
 let total = 0;
+
+// CONTADOR NAVBAR
+function actualizarContador(){
+    let contador = document.getElementById("contadorCarrito");
+    if(contador){
+        contador.innerText = carrito.length;
+    }
+}
 
 // RENDER
 function render(){
@@ -101,17 +93,19 @@ function render(){
     total = 0;
 
     if(carrito.length === 0){
-        lista.innerHTML = "<li class='list-group-item text-danger'>El carrito está vacío</li>";
+        lista.innerHTML = "<li class='list-group-item text-danger'>Carrito vacío</li>";
         document.getElementById("total").innerText = 0;
+        actualizarContador();
         return;
     }
 
     carrito.forEach((id,index) => {
+
         let p = productos[id];
         total += p.precio;
 
         lista.innerHTML += `
-        <li class="list-group-item d-flex justify-content-between">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
             ${p.nombre} - $${p.precio}
 
             <button class="btn btn-danger btn-sm" onclick="eliminar(${index})">
@@ -122,6 +116,7 @@ function render(){
     });
 
     document.getElementById("total").innerText = total;
+    actualizarContador();
 }
 
 // ELIMINAR
@@ -133,13 +128,13 @@ function eliminar(index){
 
 // VACIAR
 function vaciar(){
-    localStorage.removeItem("carrito");
     carrito = [];
+    localStorage.removeItem("carrito");
     render();
 }
 
 // CARGAR PEDIDO EN MODAL
-document.getElementById("modalCompra").addEventListener("show.bs.modal", function(){
+document.getElementById("modalCompra")?.addEventListener("show.bs.modal", function(){
 
     if(carrito.length === 0){
         document.getElementById("pedido").value = "Carrito vacío";
@@ -147,6 +142,7 @@ document.getElementById("modalCompra").addEventListener("show.bs.modal", functio
     }
 
     let texto = "";
+
     carrito.forEach(id => {
         let p = productos[id];
         texto += `${p.nombre} - $${p.precio}\n`;
@@ -157,28 +153,26 @@ document.getElementById("modalCompra").addEventListener("show.bs.modal", functio
     document.getElementById("pedido").value = texto;
 });
 
-// ENVIAR A WHATSAPP
-document.getElementById("formCompra").addEventListener("submit", function(e){
+// ENVIAR WHATSAPP
+document.getElementById("formCompra")?.addEventListener("submit", function(e){
     e.preventDefault();
 
     let nombre = document.getElementById("nombre").value;
     let email = document.getElementById("email").value;
     let pedido = document.getElementById("pedido").value;
 
-    let mensaje = `Hola, quiero comprar:\n\n${pedido}\n\nNombre: ${nombre}\nEmail: ${email}`;
+    let mensaje = `🛒 Pedido Web\n\n${pedido}\n\n👤 Nombre: ${nombre}\n📧 Email: ${email}`;
 
-    // ⚠️ CAMBIAR ESTE NÚMERO
-    let numero = "5493794142799";
+    // 🔴 CAMBIÁ POR TU NÚMERO
+    let numero = "5493794126408";
 
     let url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
     window.open(url, "_blank");
 });
 
-// INICIAL
+// INIT
 render();
 
 </script>
-
-</body>
-</html>
+@endsection

@@ -8,10 +8,10 @@ class RegistroUsuario extends Mailable
 {
     public $nombre;
 
-    public function __construct($nombre)
+    public function __construct($nombre = 'Usuario') 
     {
         $this->nombre = $nombre;
-    }
+    }      
 
     public function build()
     {
