@@ -14,14 +14,12 @@
 
     <button class="btn btn-danger mt-3" onclick="vaciar()">Vaciar carrito</button>
 
-    <!-- BOTÓN COMPRA -->
     <button class="btn btn-success mt-3 ms-2" data-bs-toggle="modal" data-bs-target="#modalCompra">
         <i class="bi bi-whatsapp"></i> Comprar
     </button>
 
 </div>
 
-<!-- MODAL -->
 <div class="modal fade" id="modalCompra">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -68,7 +66,6 @@
 @section('scripts')
 <script>
 
-// PRODUCTOS (simulación)
 let productos = {
     1:{nombre:"Zapatillas Nike",precio:25000},
     2:{nombre:"Remera Adidas",precio:12000}
@@ -78,7 +75,6 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let lista = document.getElementById("listaCarrito");
 let total = 0;
 
-// CONTADOR NAVBAR
 function actualizarContador(){
     let contador = document.getElementById("contadorCarrito");
     if(contador){
@@ -86,7 +82,6 @@ function actualizarContador(){
     }
 }
 
-// RENDER
 function render(){
 
     lista.innerHTML = "";
@@ -119,21 +114,18 @@ function render(){
     actualizarContador();
 }
 
-// ELIMINAR
 function eliminar(index){
     carrito.splice(index,1);
     localStorage.setItem("carrito", JSON.stringify(carrito));
     render();
 }
 
-// VACIAR
 function vaciar(){
     carrito = [];
     localStorage.removeItem("carrito");
     render();
 }
 
-// CARGAR PEDIDO EN MODAL
 document.getElementById("modalCompra")?.addEventListener("show.bs.modal", function(){
 
     if(carrito.length === 0){
@@ -153,7 +145,6 @@ document.getElementById("modalCompra")?.addEventListener("show.bs.modal", functi
     document.getElementById("pedido").value = texto;
 });
 
-// ENVIAR WHATSAPP
 document.getElementById("formCompra")?.addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -163,7 +154,6 @@ document.getElementById("formCompra")?.addEventListener("submit", function(e){
 
     let mensaje = `🛒 Pedido Web\n\n${pedido}\n\n👤 Nombre: ${nombre}\n📧 Email: ${email}`;
 
-    // 🔴 CAMBIÁ POR TU NÚMERO
     let numero = "5493794126408";
 
     let url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
@@ -171,7 +161,6 @@ document.getElementById("formCompra")?.addEventListener("submit", function(e){
     window.open(url, "_blank");
 });
 
-// INIT
 render();
 
 </script>
