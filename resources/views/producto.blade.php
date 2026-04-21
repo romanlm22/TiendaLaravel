@@ -38,7 +38,6 @@
 @section('scripts')
 <script>
 
-// 🛒 CONTADOR
 function actualizarContador(){
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     let contador = document.getElementById("contadorCarrito");
@@ -69,7 +68,6 @@ document.getElementById("btnAgregar").addEventListener("click", function(){
     actualizarContador();
 });
 
-// INIT
 actualizarContador();
 
 </script>
