@@ -8,12 +8,10 @@
 
     <div class="row">
 
-        <!-- IMAGEN -->
         <div class="col-md-6">
             <img src="https://picsum.photos/500/400?random={{$id}}" class="w-100 rounded">
         </div>
 
-        <!-- INFO -->
         <div class="col-md-6">
 
             <h2>Producto {{$id}}</h2>
@@ -50,7 +48,6 @@ function actualizarContador(){
     }
 }
 
-// 🛒 AGREGAR DESDE DETALLE
 document.getElementById("btnAgregar").addEventListener("click", function(){
 
     let id = "prod_{{$id}}";
