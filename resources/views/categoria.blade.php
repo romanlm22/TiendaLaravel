@@ -13,7 +13,6 @@
         <div class="col-md-4 mb-4 producto" data-id="{{$i}}" data-nombre="producto {{$i}}">
             <div class="card shadow-sm text-center">
 
-                <!-- CLICK A DETALLE -->
                 <a href="/producto/{{$i}}" class="text-decoration-none text-dark">
                     <img src="https://picsum.photos/300/200?random={{$i}}">
                 </a>
@@ -42,7 +41,6 @@
 @section('scripts')
 <script>
 
-// 🔍 BUSCADOR (MISMO QUE MAIN)
 document.getElementById("buscador")?.addEventListener("keyup", function() {
     let filtro = this.value.toLowerCase();
 
@@ -52,7 +50,6 @@ document.getElementById("buscador")?.addEventListener("keyup", function() {
     });
 });
 
-// 🛒 CONTADOR
 function actualizarContador(){
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     let contador = document.getElementById("contadorCarrito");
@@ -64,7 +61,6 @@ function actualizarContador(){
     }
 }
 
-// 🛒 AGREGAR (MISMA LÓGICA)
 document.querySelectorAll(".agregar-btn").forEach((btn, index) => {
 
     btn.addEventListener("click", function() {
@@ -90,7 +86,6 @@ document.querySelectorAll(".agregar-btn").forEach((btn, index) => {
 
 });
 
-// INIT
 actualizarContador();
 
 </script>
