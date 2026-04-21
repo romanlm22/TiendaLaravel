@@ -6,7 +6,6 @@
 
 <div class="container mt-4">
 
-    <!-- 🔹 CARRUSELES -->
     <div class="row">
 
         <!-- IZQ -->
@@ -42,7 +41,6 @@
             </div>
         </div>
 
-        <!-- DER -->
         <div class="col-md-6">
             <div id="carouselDer" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
 
@@ -77,7 +75,6 @@
 
     </div>
 
-    <!-- 🔹 CATEGORIAS -->
     <h3 class="text-center mt-5">Categorías</h3>
 
     <div class="d-flex justify-content-center flex-wrap gap-4 mt-4">
@@ -91,7 +88,6 @@
         @endfor
     </div>
 
-    <!-- 🔹 PRODUCTOS -->
     <h3 class="text-center mt-5">Productos</h3>
 
     <div class="row mt-4">
@@ -99,7 +95,6 @@
         <div class="col-md-4 mb-4 producto" data-id="{{$i}}" data-nombre="producto {{$i}}">
             <div class="card shadow-sm text-center">
 
-                <!-- CLICK A DETALLE -->
                 <a href="/producto/{{$i}}" class="text-decoration-none text-dark">
                     <img src="https://picsum.photos/300/200?random={{$i}}">
                 </a>
@@ -121,8 +116,6 @@
         @endfor
     </div>
 
-    <!-- 🔹 OFERTAS -->
-<!-- 🔹 OFERTAS -->
 <h3 class="text-center mt-5">Ofertas</h3>
 
 <div class="d-flex align-items-center mt-4">
@@ -132,7 +125,6 @@
         @for($i=1; $i<=8; $i++)
         <div class="card oferta-card producto text-center shadow-sm" data-id="of{{$i}}" data-nombre="oferta {{$i}}">
 
-            <!-- CLICK A DETALLE -->
             <a href="/producto/{{$i}}" class="text-decoration-none text-dark">
                 <img src="https://picsum.photos/200/150?random={{$i}}">
             </a>
@@ -156,7 +148,6 @@
     <span class="flecha" onclick="scrollOfertas(1)">❯</span>
 </div>
 
-    <!-- 🔹 MARCAS -->
     <div class="marcas mt-5 mb-5">
         <div class="marcas-track">
             <img src="https://picsum.photos/150/80?1">
@@ -177,7 +168,6 @@
 @section('scripts')
 <script>
 
-// 🔍 BUSCADOR
 document.getElementById("buscador")?.addEventListener("keyup", function() {
     let filtro = this.value.toLowerCase();
 
@@ -187,7 +177,6 @@ document.getElementById("buscador")?.addEventListener("keyup", function() {
     });
 });
 
-// 🛒 CONTADOR
 function actualizarContador(){
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     let contador = document.getElementById("contadorCarrito");
@@ -199,7 +188,6 @@ function actualizarContador(){
     }
 }
 
-// 🛒 AGREGAR PRODUCTOS / OFERTAS
 document.querySelectorAll(".agregar-btn").forEach((btn) => {
 
     btn.addEventListener("click", function() {
@@ -226,7 +214,6 @@ document.querySelectorAll(".agregar-btn").forEach((btn) => {
 
 });
 
-// SCROLL OFERTAS
 function scrollOfertas(dir){
     document.querySelector(".ofertas-scroll")
     .scrollBy({left:dir*300,behavior:'smooth'});
